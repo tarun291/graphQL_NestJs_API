@@ -2,29 +2,38 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Course {
+  id: Float!
+  courseName: String!
+}
+
 type Student {
   id: Float!
   name: String!
-  age: Int!
+  age: Float!
+  email: String!
+  password: Float!
+  courses: [Course!]!
 }
 
 type Query {
   findStudent(id: Int!): Student!
   deleteStudent(id: Int!): Student!
-  students: [Student!]!
+  students: [Course!]!
 }
 
 type Mutation {
-  create(createStudent: CreateStudent!): Student!
+  create(createCourse: CreateCourse!): Course!
   update(id: Int!, updateStudent: UpdateStudent!): Student!
 }
 
-input CreateStudent {
-  name: String!
-  age: Float!
+input CreateCourse {
+  courseName: String!
 }
 
 input UpdateStudent {
   name: String
-  age: Float
+  age: Int
+  email: String
+  password: Float
 }

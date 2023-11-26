@@ -17,7 +17,8 @@ export class StudentService {
     return newStudent;
   }
   async findAll(): Promise<Student[]> {
-    return await this.studentRepo.find();
+    const students=await this.studentRepo.find();
+    return students;
   }
   async findById(id: number): Promise<any> {
     return await this.studentRepo.findOne({ where: { id: id } });

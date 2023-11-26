@@ -1,9 +1,9 @@
 /* eslint-disable prettier/prettier */
-import { StudentService } from './student.service';
-import { StudentResolver } from './student.resolver';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Student } from './student.entity';
+import { Course } from './course.entity';
+import { CourseResolver } from './course.resolver';
+import { CourseService } from './course.service';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 
@@ -13,8 +13,8 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
       driver: ApolloDriver,
       autoSchemaFile: true,
     }),
-    TypeOrmModule.forFeature([Student]),
+    TypeOrmModule.forFeature([Course]),
   ],
-  providers: [StudentService, StudentResolver],
+  providers: [CourseResolver, CourseService],
 })
-export class StudentModule {}
+export class CourseModule {}

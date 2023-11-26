@@ -8,9 +8,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: 'localhost',
-      username: '',
+      username: 'postgres',
       port: 5432,
-      password: '',
+      password: '@Kumar321',
       database: 'TestDB',
       entities: [__dirname + '/../**/*.entity.js'] ,
       synchronize: true,

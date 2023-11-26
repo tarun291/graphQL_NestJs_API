@@ -1,9 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { Field, InputType } from '@nestjs/graphql';
+import { PartialType, InputType } from '@nestjs/graphql';
+import { CreateStudent } from './create-student.dto';
 @InputType()
-export class UpdateStudent {
-  @Field({ nullable: true })
-  name: string;
-  @Field({ nullable: true })
-  age: number;
-}
+export class UpdateStudent extends PartialType(CreateStudent) {}
