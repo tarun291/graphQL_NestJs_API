@@ -1,8 +1,12 @@
 /* eslint-disable prettier/prettier */
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-// import { join } from 'path';
-
+import { Student } from '../student/student.entity';
+import { Team } from '../team/team.entity';
+import { User } from '../user/user.entity';
+import {Photo} from '../photo/photo.entity';
+import { Problem } from 'src/problem/problem.entity';
+import { Topic } from 'src/topic/topic.etity';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -10,9 +14,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       host: 'localhost',
       username: 'postgres',
       port: 5432,
-      password: '@Kumar321',
+      password: '',
       database: 'TestDB',
-      entities: [__dirname + '/../**/*.entity.js'] ,
+      entities: [Student, Team, User, Photo, Problem, Topic],
       synchronize: true,
     }),
   ],

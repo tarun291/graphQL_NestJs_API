@@ -1,7 +1,6 @@
 /* eslint-disable prettier/prettier */
 import { ObjectType, Field } from '@nestjs/graphql';
-import { Column, Entity, PrimaryGeneratedColumn , JoinTable, ManyToMany} from 'typeorm';
-import { Course } from 'src/course/course.entity';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 @Entity()
 @ObjectType()
 export class Student {
@@ -20,8 +19,4 @@ export class Student {
   @Column({ nullable: true })
   @Field()
   password: number;
-  @ManyToMany(() => Course)
-  @JoinTable()
-  @Field(() => [Course])
-  courses: Course[]
 }

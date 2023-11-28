@@ -13,14 +13,14 @@ export class StudentService {
   ) {}
   async createStudent(createStudent: CreateStudent): Promise<any> {
     const newStudent = this.studentRepo.create(createStudent);
-    this.studentRepo.save(newStudent);
+    await this.studentRepo.save(newStudent);
     return newStudent;
   }
   async findAll(): Promise<Student[]> {
-    const students=await this.studentRepo.find();
+    const students = await this.studentRepo.find();
     return students;
   }
-  async findById(id: number): Promise<any> {
+  async findById(id: number): Promise<Student> {
     return await this.studentRepo.findOne({ where: { id: id } });
   }
   async remove(id: number): Promise<any> {

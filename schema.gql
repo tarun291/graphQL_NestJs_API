@@ -1,0 +1,108 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Student {
+  id: Float!
+  name: String!
+  age: Float!
+  email: String!
+  password: Float!
+}
+
+type Photo {
+  id: Float!
+  url: String!
+  user: [User!]
+}
+
+type User {
+  id: Int!
+  firstName: String!
+  lastName: String!
+  teams: [Team!]!
+  photos: [Photo!]
+}
+
+type Team {
+  id: Int!
+  name: String!
+  members: [User!]
+}
+
+type Topic {
+  id: Int!
+  name: String!
+  problems: [Problem!]
+}
+
+type Problem {
+  id: Int!
+  title: String!
+  difficulty: String!
+  topics: [Topic!]
+}
+
+type Query {
+  findStudent(id: Int!): Student
+  deleteStudent(id: Int!): Student!
+  students: [Student!]!
+  teams: [Team!]
+  team(id: Int!): Team
+  users: [User!]!
+  user(id: Int!): User
+  problems: [Problem!]!
+  problem(id: Int!): Problem
+  topics: [Topic!]
+  topic(id: Int!): Topic
+}
+
+type Mutation {
+  create(createStudent: CreateStudent!): Student!
+  update(id: Int!, updateStudent: UpdateStudent!): Student!
+  createTeam(data: TeamInput!): Team!
+  addMember(teamId: Int!, userId: Int!): Team
+  removeMember(teamId: Int!, userId: Int!): Team
+  createUser(data: UserInput!): User!
+  addPhoto(photoId: Int!, userId: Int!): User
+  createPhoto(data: PhotoInput!): Photo!
+  createProblem(data: ProblemInput!): Problem!
+  createTopic(data: TeamInput!): Topic!
+  addProblem(problemId: Int!, topicId: Int!): Topic
+  removeProblem(problemId: Int!, topicId: Int!): Topic
+}
+
+input CreateStudent {
+  name: String!
+  age: Int!
+  email: String
+  password: Float
+}
+
+input UpdateStudent {
+  name: String
+  age: Int
+  email: String
+  password: Float
+}
+
+input TeamInput {
+  name: String!
+}
+
+input UserInput {
+  firstName: String!
+  lastName: String!
+  teamId: Int
+  photoId: Int
+}
+
+input PhotoInput {
+  url: String!
+}
+
+input ProblemInput {
+  title: String!
+  difficulty: String!
+  topicId: Int
+}

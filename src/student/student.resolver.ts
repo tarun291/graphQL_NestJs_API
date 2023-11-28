@@ -8,8 +8,8 @@ import { UpdateStudent } from './dto/update-student.dto';
 @Resolver(() => Student)
 export class StudentResolver {
   constructor(private studentService: StudentService) {}
-  @Query(() => Student)
-  async findStudent(@Args('id', { type: () => Int }) id: number): Promise<any> {
+  @Query(() => Student, { nullable: true })
+  async findStudent(@Args('id', { type: () => Int }) id: number): Promise<Student> {
     return this.studentService.findById(id);
   }
   @Query(() => Student)
