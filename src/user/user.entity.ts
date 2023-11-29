@@ -5,12 +5,15 @@ import {
   Entity,
   ManyToMany,
   OneToMany,
+  OneToOne,
+  JoinColumn,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import { Field, Int, ObjectType, InputType } from '@nestjs/graphql';
 import { Team } from '../team/team.entity';
 import { Photo } from '../photo/photo.entity';
+import { Profile } from 'src/profile/profile.entity';
 @Entity('users')
 @ObjectType()
 export class User {
@@ -34,6 +37,11 @@ export class User {
   @Field(() => [Photo], { nullable: true })
   photos: Promise<Photo[]>;
 
+  @OneToOne(() => Profile, (profile) => profile.user)
+  @JoinColumn()
+  @Field(() => [Profile], { nullable: true })
+  profile: Profile;
+
   @CreateDateColumn()
   createdAt: Date;
 
@@ -54,4 +62,7 @@ export class UserInput {
 
   @Field(() => Int, { nullable: true })
   photoId?: number;
+
+  @Field(() => Int, { nullable: true })
+  profileId?: number;
 }

@@ -6,12 +6,13 @@ import { UserService } from './user.service';
 import { UserResolver } from './user.resolver';
 import { TeamModule } from '../team/team.module';
 import { PhotoModule } from 'src/photo/photo.module';
-
+import { ProfileModule } from 'src/profile/profile.module';
 @Module({
   imports: [
     TypeOrmModule.forFeature([User]),
     forwardRef(() => TeamModule),
     forwardRef(() => PhotoModule),
+    forwardRef(() => ProfileModule),
   ],
   providers: [UserService, UserResolver],
   exports: [UserService],

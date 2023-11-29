@@ -4,6 +4,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { In, Repository } from 'typeorm';
 import { TeamService } from '../team/team.service';
 import { PhotoService } from 'src/photo/photo.service';
+import { ProfileService } from 'src/profile/profile.service';
 import { User, UserInput } from './user.entity';
 
 @Injectable()
@@ -15,6 +16,8 @@ export class UserService {
     private readonly teamService: TeamService,
     @Inject(forwardRef(() => PhotoService))
     private readonly photoService: PhotoService,
+    @Inject(forwardRef(() => ProfileService))
+    private readonly profileService: ProfileService,
   ) {}
 
   findAll() {
@@ -41,7 +44,17 @@ export class UserService {
       (await user.photos).push(photo);
       await this.userRepository.save(user);
     }
-    console.log('...debug')
+    console.log('...debug');
+    return user;
+  }
+  async addProfile(userId: number, profileId: number) {
+    const user = await this.findById(userId);
+    if (!user) return null;
+    const profile = await this.profileService.findById(profileId);
+    if (profile) {
+      user.profile = profile;
+      await this.userRepository.save(user);
+    }
     return user;
   }
   async createUser(data: UserInput) {
@@ -53,6 +66,9 @@ export class UserService {
     }
     if (data.photoId) {
       await this.addPhoto(user.id, data.photoId);
+    }
+    if (data.profileId) {
+      await this.addProfile(user.id, data.profileId);
     }
     return user;
   }

@@ -6,7 +6,8 @@ import { Team } from '../team/team.entity';
 import { User } from '../user/user.entity';
 import {Photo} from '../photo/photo.entity';
 import { Problem } from 'src/problem/problem.entity';
-import { Topic } from 'src/topic/topic.etity';
+import { Topic } from 'src/topic/topic.etity'
+import { Profile } from 'src/profile/profile.entity';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -16,7 +17,7 @@ import { Topic } from 'src/topic/topic.etity';
       port: 5432,
       password: '',
       database: 'TestDB',
-      entities: [Student, Team, User, Photo, Problem, Topic],
+      entities: [Student, Team, User, Photo, Problem, Topic, Profile],
       synchronize: true,
     }),
   ],

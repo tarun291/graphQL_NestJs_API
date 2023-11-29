@@ -16,12 +16,20 @@ type Photo {
   user: [User!]
 }
 
+type Profile {
+  id: Int!
+  gender: String!
+  photo: String!
+  user: [User!]
+}
+
 type User {
   id: Int!
   firstName: String!
   lastName: String!
   teams: [Team!]!
   photos: [Photo!]
+  profile: [Profile!]
 }
 
 type Team {
@@ -48,7 +56,7 @@ type Query {
   deleteStudent(id: Int!): Student!
   students: [Student!]!
   teams: [Team!]
-  team(id: Int!): Team
+  team(id: Int!): Profile
   users: [User!]!
   user(id: Int!): User
   problems: [Problem!]!
@@ -66,6 +74,7 @@ type Mutation {
   createUser(data: UserInput!): User!
   addPhoto(photoId: Int!, userId: Int!): User
   createPhoto(data: PhotoInput!): Photo!
+  createProfile(data: ProfileInput!): Profile!
   createProblem(data: ProblemInput!): Problem!
   createTopic(data: TeamInput!): Topic!
   addProblem(problemId: Int!, topicId: Int!): Topic
@@ -95,10 +104,16 @@ input UserInput {
   lastName: String!
   teamId: Int
   photoId: Int
+  profileId: Int
 }
 
 input PhotoInput {
   url: String!
+}
+
+input ProfileInput {
+  gender: String!
+  photo: String!
 }
 
 input ProblemInput {

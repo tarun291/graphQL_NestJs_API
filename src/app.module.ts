@@ -10,6 +10,7 @@ import { DatabaseModule } from './database/database.module';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { ProblemModule } from './problem/problem.module';
 import { TopicModule } from './topic/topic.module';
+import { ProfileModule } from './profile/profile.module';
 
 @Module({
   imports: [
@@ -23,7 +24,8 @@ import { TopicModule } from './topic/topic.module';
     UserModule,
     PhotoModule,
     ProblemModule,
-    TopicModule
+    TopicModule,
+    ProfileModule
   ],
   providers: [AppService],
 })
